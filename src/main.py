@@ -1,16 +1,13 @@
 import os
-import shutil
+from static_copy import static_copy, clear_directory
 
-
-STATIC_DIR = os.path.relpath('./static', start=os.curdir)
-PUBLIC_DIR = os.path.relpath('./public', start=os.curdir)
+static_dir = os.path.relpath('./static', start=os.curdir)
+public_dir = os.path.relpath('./public', start=os.curdir)
 
 
 def main():
-    print(os.listdir(PUBLIC_DIR))
-    print("Clearing public dir...")
-    shutil.rmtree(PUBLIC_DIR)
-    print(os.listdir(PUBLIC_DIR))
+    clear_directory(public_dir)
+    static_copy(static_dir, public_dir)
 
 
 main()
