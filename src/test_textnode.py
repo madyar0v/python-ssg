@@ -64,14 +64,14 @@ class TestTextNode(unittest.TestCase):
         self.assertEqual(leafnode.__repr__(), "LeafNode(code, Text of type code, None)")
 
     def test_text_node_to_html_node_type_link(self):
-        node = TextNode("Text of type link", text_type_link)
+        node = TextNode("Text of type link", text_type_link, "https://www.boot.dev")
         leafnode = text_node_to_html_node(node)
-        self.assertEqual(leafnode.__repr__(), "LeafNode(a, Text of type link, {'href': ''})")
+        self.assertEqual(leafnode.__repr__(), "LeafNode(a, Text of type link, {'href': 'https://www.boot.dev'})")
 
     def test_text_node_to_html_node_type_image(self):
-        node = TextNode("Text of type image", text_type_image)
+        node = TextNode("This is an image", text_type_image, "https://www.boot.dev")
         leafnode = text_node_to_html_node(node)
-        self.assertEqual(leafnode.__repr__(), "LeafNode(img, , {'src': 'image URL', 'alt': 'alt text'})")
+        self.assertEqual(leafnode.__repr__(), "LeafNode(img, , {'src': 'https://www.boot.dev', 'alt': 'This is an image'})")
 
 
 if __name__ == "__main__":

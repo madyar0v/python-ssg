@@ -36,24 +36,8 @@ def text_node_to_html_node(text_node):
         case "code":
             return LeafNode(tag="code", value=text_node.text)
         case "link":
-            return LeafNode(tag="a", value=text_node.text, props={"href": ""})
+            return LeafNode(tag="a", value=text_node.text, props={"href": text_node.url})
         case "image":
-            return LeafNode(tag="img", value="", props={"src": "image URL", "alt": "alt text"})
+            return LeafNode(tag="img", value="", props={"src": text_node.url, "alt": text_node.text})
         case _:
-            raise Exception("Unknown node type!")
-
-
-# def main():
-#     nodes = [
-#         TextNode("1 This is text with a `code block` word 1", text_type_text),
-#         TextNode("`2 This is text with a `code block word 2", text_type_text),
-#         TextNode("3 This is text with a `code block word 3`", text_type_text),
-#     ]
-#
-#     new_nodes = split_nodes_delimiter(nodes, "`", text_type_code)
-#     for node in new_nodes:
-#         print(node.__repr__())
-#         print("_____________________")
-#
-
-#main()
+            raise ValueError(f"Unknown node type {text_node.text_type}")
